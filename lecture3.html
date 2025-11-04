@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture 3: Bias in AI Systems - AI in Society</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Lecture 3: Bias in AI Systems</h1>
+        <p>Understanding and Addressing Algorithmic Discrimination</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="lecture1.html">Lecture 1: Introduction to AI Ethics</a></li>
+            <li><a href="lecture2.html">Lecture 2: AI and Employment</a></li>
+            <li><a href="lecture3.html" class="active">Lecture 3: Bias in AI Systems</a></li>
+            <li><a href="lecture4.html">Lecture 4: Privacy and Surveillance</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section class="summary">
+            <h2>Lecture Summary</h2>
+            <p>This lecture confronts one of the most critical challenges in AI deployment: the presence and perpetuation of bias in algorithmic systems. Despite the common perception of algorithms as neutral and objective, AI systems can encode, amplify, and automate human biases at scale, leading to discriminatory outcomes in critical domains like hiring, lending, criminal justice, and healthcare.</p>
+            
+            <p>The lecture examines the various sources of bias in AI systems—from biased training data reflecting historical discrimination to problematic design choices and skewed feedback loops. It presents real-world case studies of algorithmic bias causing harm, while also exploring technical and policy approaches to building fairer AI systems. Importantly, it emphasizes that bias in AI is not merely a technical problem but a socio-technical challenge requiring diverse perspectives and continuous vigilance.</p>
+        </section>
+        
+        <section class="key-points">
+            <h2>Key Points</h2>
+            <ul>
+                <li><strong>Sources of Bias:</strong> Bias enters AI systems through multiple pathways: historical bias in training data (reflecting past discrimination), representation bias (underrepresentation of certain groups), measurement bias (flawed proxy variables), and aggregation bias (treating diverse groups as homogeneous).</li>
+                
+                <li><strong>Case Study - COMPAS:</strong> The lecture examines the controversial COMPAS recidivism prediction tool used in criminal sentencing. Research revealed the algorithm produced different false positive and false negative rates across racial groups, raising questions about what constitutes fairness in algorithmic decision-making.</li>
+                
+                <li><strong>Case Study - Facial Recognition:</strong> Commercial facial recognition systems have shown significantly higher error rates for women and people with darker skin tones. The lecture explores how this stems from non-diverse training datasets and has real-world consequences in security and law enforcement applications.</li>
+                
+                <li><strong>Case Study - Hiring Algorithms:</strong> Amazon's experimental AI recruiting tool showed bias against women because it was trained on historical hiring data from a male-dominated tech industry. This demonstrates how AI can perpetuate existing inequalities if historical data reflects discriminatory practices.</li>
+                
+                <li><strong>The Fairness Trade-offs:</strong> Different mathematical definitions of fairness can conflict with each other. The lecture introduces concepts like demographic parity, equal opportunity, and calibration, showing that optimizing for one fairness metric may compromise another.</li>
+                
+                <li><strong>Feedback Loops:</strong> Biased AI systems can create self-reinforcing cycles. For example, if a predictive policing algorithm directs more officers to certain neighborhoods based on historical arrest data, more arrests occur there, reinforcing the algorithm's initial bias.</li>
+                
+                <li><strong>Mitigation Strategies:</strong> The lecture presents various approaches to addressing bias including diverse data collection, algorithmic auditing, fairness-aware machine learning techniques, transparency requirements, and involving affected communities in the design process.</li>
+                
+                <li><strong>The Diversity Imperative:</strong> Homogeneous AI development teams are more likely to overlook biases. The lecture emphasizes the importance of diverse perspectives in AI development and deployment.</li>
+            </ul>
+        </section>
+        
+        <section class="discussion">
+            <h2>Discussion Topics</h2>
+            <ul>
+                <li>Can AI systems ever be truly "fair," or do they inevitably reflect the inequalities present in society?</li>
+                <li>When different fairness metrics conflict, who should decide which definition of fairness to prioritize?</li>
+                <li>Should organizations be required to conduct bias audits before deploying AI systems in high-stakes domains?</li>
+                <li>Is it possible to use biased historical data to train AI systems without perpetuating past discrimination?</li>
+                <li>How can we balance the goals of accuracy and fairness when they appear to be in tension?</li>
+            </ul>
+        </section>
+        
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 AI in Society Lecture Series</p>
+    </footer>
+</body>
+</html>
