@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3 Review: Bias, Fairness, and Algorithmic Decision-Making | AI in Society</title>
+    <style>
+        :root {
+            --navy: #1C2833;
+            --coral: #E74C3C;
+            --silver: #AAB7B8;
+            --light-blue: #B0D4F1;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --text-gray: #34495E;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-gray);
+            background-color: var(--light-gray);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--navy) 0%, #2C3E50 100%);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .course-info {
+            background-color: rgba(255,255,255,0.1);
+            padding: 0.75rem;
+            margin-top: 1rem;
+            border-radius: 5px;
+            font-size: 0.95rem;
+        }
+        
+        nav {
+            background-color: var(--white);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav a {
+            color: var(--navy);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            background-color: var(--light-blue);
+            color: var(--navy);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        section {
+            background-color: var(--white);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: var(--navy);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--coral);
+        }
+        
+        h3 {
+            color: var(--coral);
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        h4 {
+            color: var(--navy);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .key-concept {
+            background-color: var(--light-blue);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 5px solid var(--navy);
+        }
+        
+        .key-concept h4 {
+            color: var(--navy);
+            margin-top: 0;
+        }
+        
+        .case-study {
+            background-color: #FFF3F0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 5px solid var(--coral);
+        }
+        
+        .case-study h4 {
+            color: var(--coral);
+            margin-top: 0;
+        }
+        
+        .warning-box {
+            background-color: #FFF9E6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 5px solid #F39C12;
+        }
+        
+        .warning-box h4 {
+            color: #D68910;
+            margin-top: 0;
+        }
+        
+        .takeaway {
+            background-color: #E8F8F5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 5px solid #16A085;
+        }
+        
+        .takeaway h4 {
+            color: #16A085;
+            margin-top: 0;
+        }
+        
+        strong {
+            color: var(--navy);
+        }
+        
+        .highlight {
+            background-color: #FDEAA8;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+        
+        footer {
+            background-color: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--coral);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            background-color: #C0392B;
+            transform: translateY(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Week 3 Review</h1>
+        <p>Bias, Fairness, and Algorithmic Decision-Making</p>
+        <div class="course-info">
+            <strong>AI in Society: Ethical and Social Implications</strong><br>
+            CT State Norwalk Community College | CRN 80484
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#definitions">Key Definitions</a></li>
+            <li><a href="#fairness">Can Algorithms Be Fair?</a></li>
+            <li><a href="#healthcare">Healthcare Case</a></li>
+            <li><a href="#amazon">Amazon Hiring</a></li>
+            <li><a href="#mortgage">Mortgage Lending</a></li>
+            <li><a href="#patterns">Common Patterns</a></li>
+            <li><a href="#solutions">Solutions</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        
+        <!-- OVERVIEW SECTION -->
+        <section id="overview">
+            <h2>Week 3 Overview</h2>
+            
+            <p>Week 3 examined how artificial intelligence systems can perpetuate and amplify existing biases when used for consequential decision-making. We explored real-world cases where algorithms discriminated against people based on race, gender, and other protected characteristics—often despite the intentions of their creators.</p>
+            
+            <div class="takeaway">
+                <h4>🎯 Central Question</h4>
+                <p><strong>Can automated decision-making be fair?</strong> This week challenged the assumption that algorithms are neutral or objective, revealing how AI systems can systematically discriminate against certain groups.</p>
+            </div>
+            
+            <h3>Connection to Week 2</h3>
+            <ul>
+                <li><strong>Week 2 focus:</strong> What data is collected about us (surveillance)</li>
+                <li><strong>Week 3 focus:</strong> How that data is used to make decisions about us</li>
+                <li><strong>Key shift:</strong> From passive surveillance to active discrimination</li>
+            </ul>
+            
+            <h3>What We Covered</h3>
+            <ol>
+                <li><strong>Defining Bias and Fairness</strong> - Understanding algorithmic bias and why it matters</li>
+                <li><strong>The Fairness Problem</strong> - Multiple definitions of fairness that mathematically conflict</li>
+                <li><strong>Real-World Cases</strong> - Healthcare, hiring, and mortgage lending discrimination</li>
+                <li><strong>The Scale Problem</strong> - How automation amplifies bias to affect millions</li>
+                <li><strong>Solutions</strong> - Technical, policy, and organizational approaches</li>
+            </ol>
+        </section>
+        
+        <!-- KEY DEFINITIONS SECTION -->
+        <section id="definitions">
+            <h2>Key Definitions</h2>
+            
+            <div class="key-concept">
+                <h4>📖 Bias</h4>
+                <p><strong>Definition:</strong> A systematic inclination or predisposition, often based on insufficient evidence or reasoning, that distorts rational judgment and leads to unfair favoritism or discrimination toward certain individuals, groups, ideas, or things relative to others.</p>
+                <p><strong>Important:</strong> This definition applies to both human and algorithmic bias. The key word is "systematic"—bias isn't random, it follows patterns.</p>
+            </div>
+            
+            <div class="key-concept">
+                <h4>📖 Algorithmic Bias</h4>
+                <p><strong>Definition:</strong> Systematic and repeatable errors in a computer system that create unfair outcomes, such as privileging one arbitrary group over others.</p>
+                <p><strong>Sources of algorithmic bias:</strong></p>
+                <ul>
+                    <li><strong>Training data bias:</strong> Historical data reflects past discrimination</li>
+                    <li><strong>Design choices:</strong> What to measure and optimize affects outcomes</li>
+                    <li><strong>Feature selection:</strong> Which variables are included or excluded</li>
+                    <li><strong>Proxy variables:</strong> Seemingly neutral factors that correlate with protected characteristics</li>
+                    <li><strong>Feedback loops:</strong> Biased decisions create biased data for future training</li>
+                </ul>
+            </div>
+            
+            <div class="key-concept">
+                <h4>📖 Protected Characteristics</h4>
+                <p>In the United States, federal law prohibits discrimination based on:</p>
+                <ul>
+                    <li>Race</li>
+                    <li>Color</li>
+                    <li>Religion</li>
+                    <li>National origin</li>
+                    <li>Sex (including pregnancy, sexual orientation, and gender identity)</li>
+                    <li>Age (40 and older)</li>
+                    <li>Disability</li>
+                    <li>Genetic information</li>
+                </ul>
+                <p><strong>Legal issue:</strong> Discrimination based on these characteristics is illegal whether done by humans or algorithms.</p>
+            </div>
+            
+            <h3>Why "Garbage In, Garbage Out" Isn't the Full Story</h3>
+            <p>A common misconception is that biased algorithms simply reflect biased training data. While true, this oversimplifies the problem:</p>
+            <ul>
+                <li><strong>Historical data reflects past discrimination:</strong> Training on historical hiring data means learning from biased human decisions</li>
+                <li><strong>Design choices matter:</strong> What we choose to optimize (speed, accuracy, cost) affects fairness</li>
+                <li><strong>Proxy variables:</strong> Even without directly using race or gender, algorithms can find proxies (zip code, name, school attended)</li>
+                <li><strong>Amplification:</strong> Algorithms can amplify subtle patterns in data that humans might not consistently act on</li>
+                <li><strong>Scale:</strong> A biased algorithm affects millions; a biased human has limited reach</li>
+            </ul>
+        </section>
+        
+        <!-- CAN ALGORITHMS BE FAIR SECTION -->
+        <section id="fairness">
+            <h2>Can Algorithms Be Fair?</h2>
+            
+            <p>Computer scientists have identified multiple mathematical definitions of fairness. A groundbreaking discovery: <span class="highlight">it is mathematically impossible to satisfy all fairness definitions simultaneously.</span></p>
+            
+            <h3>Three Major Fairness Definitions</h3>
+            
+            <div class="key-concept">
+                <h4>1. Demographic Parity (Statistical Parity)</h4>
+                <p><strong>Requirement:</strong> Equal proportions of each group should receive positive outcomes.</p>
+                <p><strong>Example:</strong> If 10% of white applicants are hired, then 10% of Black applicants should be hired, 10% of Hispanic applicants, etc.</p>
+                <p><strong>Advantage:</strong> Ensures equal representation in outcomes</p>
+                <p><strong>Problem:</strong> May be "unfair" if groups genuinely differ in qualifications (however defined)</p>
+            </div>
+            
+            <div class="key-concept">
+                <h4>2. Equal Opportunity (True Positive Rate Equality)</h4>
+                <p><strong>Requirement:</strong> Among qualified individuals, equal proportions from each group should receive positive outcomes.</p>
+                <p><strong>Example:</strong> Among all people who would succeed in a job, equal proportions from each demographic group should be hired.</p>
+                <p><strong>Advantage:</strong> Focuses on not discriminating against qualified members of any group</p>
+                <p><strong>Problem:</strong> Requires knowing "ground truth" about who is truly qualified (often unknowable)</p>
+            </div>
+            
+            <div class="key-concept">
+                <h4>3. Predictive Parity (Positive Predictive Value)</h4>
+                <p><strong>Requirement:</strong> Among those who receive positive predictions, equal proportions from each group should actually be qualified.</p>
+                <p><strong>Example:</strong> Among all people hired, equal proportions from each demographic group should succeed.</p>
+                <p><strong>Advantage:</strong> Ensures algorithm is equally accurate for all groups</p>
+                <p><strong>Problem:</strong> May result in different standards being applied to different groups</p>
+            </div>
+            
+            <div class="warning-box">
+                <h4>⚠️ The Impossibility Theorem</h4>
+                <p><strong>Mathematical proof exists:</strong> Except in trivial cases, you cannot simultaneously achieve demographic parity, equal opportunity, and predictive parity.</p>
+                <p><strong>Implication:</strong> Fairness requires making difficult ethical choices about which criterion matters most. There is no purely technical solution—fairness is a social and ethical question, not just a mathematical one.</p>
+                <p><strong>Key insight:</strong> When someone claims their algorithm is "fair," ask: "Fair according to which definition?"</p>
+            </div>
+            
+            <h3>Additional Fairness Considerations</h3>
+            
+            <h4>Individual Fairness</h4>
+            <p><strong>Concept:</strong> Similar individuals should be treated similarly.</p>
+            <p><strong>Challenge:</strong> Defining "similarity" in a way that doesn't encode existing biases.</p>
+            
+            <h4>Calibration</h4>
+            <p><strong>Concept:</strong> When the algorithm says someone has a 70% chance of success, approximately 70% of people with that score should actually succeed (for all demographic groups).</p>
+            <p><strong>Importance:</strong> Ensures the algorithm's confidence levels mean the same thing across groups.</p>
+            
+            <h4>Counterfactual Fairness</h4>
+            <p><strong>Concept:</strong> An individual's outcome should be the same in the actual world and in a counterfactual world where they belong to a different demographic group.</p>
+            <p><strong>Example:</strong> Would the algorithm make the same hiring decision if the applicant's race were different, holding everything else constant?</p>
+            <p><strong>Challenge:</strong> Difficult to implement because many factors are causally related to demographics.</p>
+        </section>
+        
+        <!-- HEALTHCARE CASE SECTION -->
+        <section id="healthcare">
+            <h2>Case Study: Healthcare Risk Algorithm</h2>
+            
+            <div class="case-study">
+                <h4>📋 The Case</h4>
+                <p><strong>What happened:</strong> A widely-used healthcare algorithm systematically underestimated the health needs of Black patients compared to equally sick white patients.</p>
+                <p><strong>Scale:</strong> Affected approximately 200 million people across major U.S. hospitals</p>
+                <p><strong>Source:</strong> Published in <em>Science</em> journal (October 2019) by Obermeyer et al.</p>
+            </div>
+            
+            <h3>How the Algorithm Worked</h3>
+            <ul>
+                <li><strong>Purpose:</strong> Predict which patients need extra care and resources</li>
+                <li><strong>Target variable:</strong> Algorithm predicted future healthcare costs</li>
+                <li><strong>Logic:</strong> Patients predicted to have high future costs were flagged for intervention programs</li>
+                <li><strong>Data used:</strong> Patient demographics, diagnoses, prior healthcare utilization, insurance claims</li>
+            </ul>
+            
+            <h3>The Discrimination</h3>
+            <div class="warning-box">
+                <h4>⚠️ Key Finding</h4>
+                <p>At a given risk score, Black patients were considerably sicker than white patients. For example, among patients labeled "high risk":</p>
+                <ul>
+                    <li>Black patients had more chronic conditions</li>
+                    <li>Black patients had worse vital signs and lab results</li>
+                    <li>Yet they received the same risk score as healthier white patients</li>
+                </ul>
+                <p><strong>Impact:</strong> Black patients had to be much sicker than white patients to receive the same level of algorithmic attention and care.</p>
+            </div>
+            
+            <h3>Why Did This Happen?</h3>
+            
+            <h4>The Root Cause: Choice of Target Variable</h4>
+            <p>The algorithm predicted <strong>healthcare costs</strong> rather than <strong>healthcare needs</strong>.</p>
+            
+            <p><strong>The problem:</strong> Healthcare costs and healthcare needs aren't the same, especially across racial groups.</p>
+            
+            <ul>
+                <li><strong>Systemic healthcare access disparities:</strong> Black patients historically have less access to healthcare due to:
+                    <ul>
+                        <li>Insurance gaps</li>
+                        <li>Geographic distance from quality providers</li>
+                        <li>Discrimination in healthcare settings</li>
+                        <li>Distrust of medical system due to historical abuse</li>
+                        <li>Economic barriers</li>
+                    </ul>
+                </li>
+                <li><strong>Result:</strong> Black patients generate lower healthcare costs even when equally sick because they receive less care</li>
+                <li><strong>Algorithm learned:</strong> "Lower past costs mean lower future needs" (which was false)</li>
+            </ul>
+            
+            <h3>Why This Matters</h3>
+            <ol>
+                <li><strong>Perpetuating historical discrimination:</strong> The algorithm learned from data that reflected past healthcare discrimination, then perpetuated it</li>
+                <li><strong>Seemingly neutral choice had discriminatory effect:</strong> Using "cost" as a proxy for "need" seemed reasonable but encoded racial bias</li>
+                <li><strong>Scale of harm:</strong> 200 million people affected - far more than any individual doctor's bias could reach</li>
+                <li><strong>Opacity:</strong> Hospitals using this algorithm didn't realize it was discriminating until researchers investigated</li>
+            </ol>
+            
+            <div class="takeaway">
+                <h4>🎯 Key Lessons</h4>
+                <ul>
+                    <li><strong>Measurement choices are ethical choices:</strong> Deciding what to measure (cost vs. need) has profound implications</li>
+                    <li><strong>Proxies can encode bias:</strong> Using cost as a proxy for need captured existing racial healthcare disparities</li>
+                    <li><strong>Historical data reflects historical discrimination:</strong> Training on past data means learning from past biases</li>
+                    <li><strong>Technical accuracy ≠ fairness:</strong> The algorithm was technically accurate at predicting costs, but unfair in allocating care</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- AMAZON HIRING CASE SECTION -->
+        <section id="amazon">
+            <h2>Case Study: Amazon's Hiring Algorithm</h2>
+            
+            <div class="case-study">
+                <h4>📋 The Case</h4>
+                <p><strong>What happened:</strong> Amazon developed an AI system to review resumes and identify top candidates, but the system systematically discriminated against women.</p>
+                <p><strong>Timeline:</strong> Developed starting in 2014, discovered to be biased, abandoned by 2017</p>
+                <p><strong>Source:</strong> Reuters investigation (October 2018)</p>
+            </div>
+            
+            <h3>How the Algorithm Worked</h3>
+            <ul>
+                <li><strong>Purpose:</strong> Automate resume screening to identify promising technical candidates</li>
+                <li><strong>Training data:</strong> 10 years of resumes submitted to Amazon, mostly from men</li>
+                <li><strong>Method:</strong> Machine learning model trained to identify patterns in successful past candidates</li>
+                <li><strong>Goal:</strong> Increase efficiency, reduce bias from individual recruiters</li>
+            </ul>
+            
+            <h3>The Discrimination</h3>
+            <div class="warning-box">
+                <h4>⚠️ How It Discriminated</h4>
+                <p>The algorithm penalized resumes that contained:</p>
+                <ul>
+                    <li>The word "women's" (as in "women's chess club captain")</li>
+                    <li>Names of all-women's colleges</li>
+                    <li>Other gendered language or affiliations</li>
+                </ul>
+                <p><strong>Result:</strong> Female candidates were systematically rated lower than comparable male candidates.</p>
+            </div>
+            
+            <h3>Why Did This Happen?</h3>
+            
+            <h4>Root Cause #1: Biased Training Data</h4>
+            <ul>
+                <li>Tech industry has been male-dominated, especially in past decades</li>
+                <li>Amazon's historical hires were predominantly male</li>
+                <li>Algorithm learned: "Successful candidates look like the men we hired before"</li>
+                <li>Women's resumes didn't match the learned pattern of "success"</li>
+            </ul>
+            
+            <h4>Root Cause #2: Pattern Recognition Without Understanding</h4>
+            <ul>
+                <li>Machine learning finds correlations, not causation</li>
+                <li>Algorithm noticed: past successful candidates → mostly male</li>
+                <li>Algorithm couldn't understand: correlation due to discrimination, not capability</li>
+                <li>Result: algorithm automated the same discrimination it learned from</li>
+            </ul>
+            
+            <h3>Amazon's Response</h3>
+            <p>After discovering the bias, Amazon:</p>
+            <ol>
+                <li>Attempted to edit the algorithm to neutralize gender bias</li>
+                <li>Could not guarantee bias was fully eliminated</li>
+                <li>Abandoned the project entirely in 2017</li>
+                <li>Stated the tool was never used as sole decision-maker (always involved human review)</li>
+            </ol>
+            
+            <h3>Broader Context: Women in Tech</h3>
+            <ul>
+                <li>Women earned majority of computer science degrees in 1980s</li>
+                <li>By 2010s, women earned only ~20% of CS degrees</li>
+                <li>Tech industry workforce is ~25-30% women overall, lower in technical roles</li>
+                <li>Historical discrimination created male-dominated field</li>
+                <li>Algorithms trained on this history perpetuate the imbalance</li>
+            </ul>
+            
+            <div class="takeaway">
+                <h4>🎯 Key Lessons</h4>
+                <ul>
+                    <li><strong>Historical bias becomes algorithmic bias:</strong> Training data reflecting past discrimination leads algorithms to perpetuate it</li>
+                    <li><strong>Good intentions aren't enough:</strong> Amazon wanted to reduce bias but created a biased system</li>
+                    <li><strong>Fixing bias is hard:</strong> Even after identifying the problem, eliminating bias proved difficult</li>
+                    <li><strong>Representation matters:</strong> Homogeneous development teams may miss how algorithms harm underrepresented groups</li>
+                    <li><strong>Some decisions may not be suitable for automation:</strong> When historical data is severely biased, automating may perpetuate injustice</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- MORTGAGE LENDING CASE SECTION -->
+        <section id="mortgage">
+            <h2>Case Study: Mortgage Lending Algorithms</h2>
+            
+            <div class="case-study">
+                <h4>📋 The Case</h4>
+                <p><strong>What happened:</strong> Investigation found that algorithmic mortgage lending systems systematically discriminated against Black, Hispanic, and Asian applicants.</p>
+                <p><strong>Scale:</strong> Analysis of 17 million mortgage applications</p>
+                <p><strong>Source:</strong> <em>The Markup</em> investigation (August 2021): "The Secret Bias Hidden in Mortgage-Approval Algorithms"</p>
+            </div>
+            
+            <h3>The Findings</h3>
+            <div class="warning-box">
+                <h4>⚠️ Discrimination Patterns</h4>
+                <p>Controlling for financial factors (income, debt, credit score, down payment, property value), the algorithm was more likely to deny:</p>
+                <ul>
+                    <li><strong>Black applicants:</strong> 80% more likely to be denied than white applicants</li>
+                    <li><strong>Hispanic applicants:</strong> 40% more likely to be denied</li>
+                    <li><strong>Asian applicants:</strong> 40-50% more likely to be denied in some lenders' systems</li>
+                </ul>
+                <p><strong>Note:</strong> These disparities existed even when comparing applicants with similar financial profiles.</p>
+            </div>
+            
+            <h3>How Algorithmic Lending Works</h3>
+            <ul>
+                <li><strong>Traditional lending:</strong> Human loan officers review applications, make approval decisions</li>
+                <li><strong>Algorithmic lending:</strong> Machine learning models trained on historical lending data predict default risk and make approval recommendations</li>
+                <li><strong>Claimed advantages:</strong> Faster processing, more consistent, less human bias, consideration of more factors</li>
+                <li><strong>Reality:</strong> Algorithms often perpetuated or amplified existing discrimination</li>
+            </ul>
+            
+            <h3>Why Did This Happen?</h3>
+            
+            <h4>Historical Context: Redlining and Housing Discrimination</h4>
+            <ul>
+                <li><strong>Redlining (1930s-1960s):</strong> Government and banks systematically denied mortgages in Black neighborhoods</li>
+                <li><strong>Fair Housing Act (1968):</strong> Made explicit racial discrimination in lending illegal</li>
+                <li><strong>But discrimination continued:</strong> Through more subtle mechanisms
+                    <ul>
+                        <li>Higher interest rates for minority borrowers</li>
+                        <li>Predatory lending targeted at communities of color</li>
+                        <li>Stricter standards applied to minority applicants</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h4>How Algorithms Learned Discrimination</h4>
+            <ol>
+                <li><strong>Training data reflected historical bias:</strong> Models trained on decades of lending decisions that included discrimination</li>
+                <li><strong>Proxy variables:</strong> Even without using race directly, algorithms used proxies:
+                    <ul>
+                        <li>Zip code (correlates with race due to residential segregation)</li>
+                        <li>Applicant's name (can indicate race or ethnicity)</li>
+                        <li>Employment history (affected by labor market discrimination)</li>
+                        <li>Credit history (affected by past lending discrimination)</li>
+                    </ul>
+                </li>
+                <li><strong>Opaque decision-making:</strong> Complex algorithms made it difficult to detect discrimination patterns</li>
+            </ol>
+            
+            <h3>Why This Matters</h3>
+            
+            <h4>Homeownership and Wealth Inequality</h4>
+            <ul>
+                <li>Homeownership is primary wealth-building mechanism for most American families</li>
+                <li>Racial wealth gap in U.S.: median white family has ~10x wealth of median Black family</li>
+                <li>Housing discrimination is major contributor to this gap</li>
+                <li>Algorithmic discrimination perpetuates and potentially worsens wealth inequality</li>
+            </ul>
+            
+            <h4>Legal and Regulatory Issues</h4>
+            <ul>
+                <li><strong>Fair Housing Act:</strong> Prohibits discrimination in lending</li>
+                <li><strong>Equal Credit Opportunity Act:</strong> Prohibits discrimination in credit decisions</li>
+                <li><strong>Challenge:</strong> Proving algorithmic discrimination is difficult
+                    <ul>
+                        <li>Algorithms are complex and opaque</li>
+                        <li>Lenders claim they don't use race (but proxies achieve similar results)</li>
+                        <li>Causation is hard to prove</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <div class="takeaway">
+                <h4>🎯 Key Lessons</h4>
+                <ul>
+                    <li><strong>Historical discrimination becomes algorithmic discrimination:</strong> Centuries of housing discrimination encoded in training data</li>
+                    <li><strong>Proxy variables enable discrimination:</strong> Even without using race, algorithms find correlated factors</li>
+                    <li><strong>High stakes decisions require scrutiny:</strong> Mortgage approval affects wealth accumulation and life opportunities</li>
+                    <li><strong>Regulation lags technology:</strong> Fair lending laws written before algorithmic lending existed</li>
+                    <li><strong>Opacity enables discrimination:</strong> Complex models make it hard to detect and prove bias</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- COMMON PATTERNS SECTION -->
+        <section id="patterns">
+            <h2>Common Patterns Across Cases</h2>
+            
+            <p>Examining the healthcare, hiring, and mortgage lending cases reveals recurring themes about how algorithmic bias emerges and persists.</p>
+            
+            <h3>1. Historical Bias Becomes Algorithmic Bias</h3>
+            <ul>
+                <li><strong>Pattern:</strong> Algorithms trained on historical data learn from past discrimination</li>
+                <li><strong>Healthcare:</strong> Learned from past healthcare access disparities</li>
+                <li><strong>Amazon:</strong> Learned from male-dominated hiring history</li>
+                <li><strong>Mortgages:</strong> Learned from decades of discriminatory lending</li>
+                <li><strong>Implication:</strong> Using historical data to predict future outcomes perpetuates existing inequalities</li>
+            </ul>
+            
+            <h3>2. Seemingly Neutral Choices Have Discriminatory Effects</h3>
+            <ul>
+                <li><strong>Pattern:</strong> Technical decisions that seem objective actually encode bias</li>
+                <li><strong>Healthcare:</strong> Using "cost" as proxy for "need" captured racial disparities</li>
+                <li><strong>Amazon:</strong> Selecting features from resumes inadvertently captured gender</li>
+                <li><strong>Mortgages:</strong> Using zip code and credit history as risk factors captured racial discrimination</li>
+                <li><strong>Implication:</strong> Every technical choice is also a social and ethical choice</li>
+            </ul>
+            
+            <h3>3. Proxy Variables Enable Discrimination</h3>
+            <div class="key-concept">
+                <h4>Proxy Variables</h4>
+                <p><strong>Definition:</strong> Factors that correlate with protected characteristics (race, gender) even though they seem neutral.</p>
+                <p><strong>Examples:</strong></p>
+                <ul>
+                    <li>Zip code → correlates with race due to residential segregation</li>
+                    <li>Names → can indicate race, ethnicity, gender</li>
+                    <li>School attended → correlates with socioeconomic background and race</li>
+                    <li>Past healthcare utilization → correlates with access and race</li>
+                    <li>Words like "women's" in resumes → direct gender indicator</li>
+                </ul>
+                <p><strong>Problem:</strong> Even when algorithms don't directly use race or gender, they can achieve similar discriminatory results through proxies.</p>
+            </div>
+            
+            <h3>4. Good Intentions Don't Prevent Bias</h3>
+            <ul>
+                <li>Amazon wanted to reduce hiring bias → created a biased system</li>
+                <li>Algorithmic lending promised to remove human bias → perpetuated discrimination</li>
+                <li>Healthcare algorithm aimed to identify patients who need care → disadvantaged Black patients</li>
+                <li><strong>Lesson:</strong> Bias isn't about bad intentions; it's about systemic patterns that require active effort to identify and address</li>
+            </ul>
+            
+            <h3>5. The Scale Problem: Automation Amplifies Harm</h3>
+            <div class="warning-box">
+                <h4>⚠️ Scale Multiplies Impact</h4>
+                <p><strong>Human bias:</strong> Limited by individual capacity</p>
+                <ul>
+                    <li>A biased hiring manager reviews ~100 resumes/week</li>
+                    <li>A discriminatory loan officer processes ~50 applications/month</li>
+                    <li>A prejudiced doctor sees ~30 patients/day</li>
+                </ul>
+                <p><strong>Algorithmic bias:</strong> Operates at massive scale</p>
+                <ul>
+                    <li>Amazon's system could review thousands of resumes simultaneously</li>
+                    <li>Lending algorithms process applications 24/7 at scale</li>
+                    <li>Healthcare algorithm affected 200 million people</li>
+                </ul>
+                <p><strong>Key difference:</strong> A biased algorithm can harm thousands before anyone notices. Human discrimination is inconsistent; algorithmic discrimination is systematic and repeatable.</p>
+            </div>
+            
+            <h3>6. Opacity Makes Bias Hard to Detect</h3>
+            <ul>
+                <li><strong>Complex models:</strong> Modern ML systems (especially deep learning) are "black boxes"</li>
+                <li><strong>Proprietary systems:</strong> Companies treat algorithms as trade secrets</li>
+                <li><strong>Technical barriers:</strong> Understanding bias requires both domain expertise and technical knowledge</li>
+                <li><strong>Result:</strong> Discrimination can persist for years before detection</li>
+            </ul>
+            
+            <h3>7. Technical Accuracy ≠ Ethical Fairness</h3>
+            <ul>
+                <li>Healthcare algorithm was accurate at predicting costs (but unfair in allocating care)</li>
+                <li>Amazon's system might have been accurate at predicting "fit" based on past hires (but perpetuated gender imbalance)</li>
+                <li>Mortgage algorithms might accurately predict default risk (but encode historical discrimination)</li>
+                <li><strong>Implication:</strong> We need to evaluate algorithms on fairness criteria, not just accuracy</li>
+            </ul>
+        </section>
+        
+        <!-- SOLUTIONS SECTION -->
+        <section id="solutions">
+            <h2>Solutions and Approaches</h2>
+            
+            <p>Addressing algorithmic bias requires action across multiple levels: technical, organizational, and policy.</p>
+            
+            <h3>Technical Solutions</h3>
+            
+            <h4>1. Fairness-Aware Machine Learning</h4>
+            <ul>
+                <li><strong>Pre-processing:</strong> Modify training data to remove bias before training</li>
+                <li><strong>In-processing:</strong> Incorporate fairness constraints during model training</li>
+                <li><strong>Post-processing:</strong> Adjust model outputs to satisfy fairness criteria</li>
+                <li><strong>Limitation:</strong> Must choose which fairness definition to optimize (remember: can't satisfy all simultaneously)</li>
+            </ul>
+            
+            <h4>2. Algorithmic Auditing</h4>
+            <ul>
+                <li><strong>Regular testing:</strong> Evaluate algorithm performance across demographic groups</li>
+                <li><strong>Disparate impact analysis:</strong> Measure whether outcomes differ by protected characteristics</li>
+                <li><strong>Red-teaming:</strong> Deliberately try to find failures and biases</li>
+                <li><strong>Third-party audits:</strong> Independent review by external experts</li>
+            </ul>
+            
+            <h4>3. Explainability and Transparency</h4>
+            <ul>
+                <li><strong>Interpretable models:</strong> Use simpler models that can be understood and audited</li>
+                <li><strong>Explanation methods:</strong> Techniques like LIME or SHAP that explain individual predictions</li>
+                <li><strong>Documentation:</strong> Clear documentation of data sources, design choices, known limitations</li>
+                <li><strong>Challenge:</strong> Trade-off between model performance and interpretability</li>
+            </ul>
+            
+            <h4>4. Better Data Collection</h4>
+            <ul>
+                <li><strong>Representative data:</strong> Ensure training data includes diverse populations</li>
+                <li><strong>Measure what matters:</strong> Collect data on actual goals (e.g., health needs, not just costs)</li>
+                <li><strong>Challenge historical bias:</strong> Don't simply perpetuate existing patterns</li>
+            </ul>
+            
+            <h3>Organizational Solutions</h3>
+            
+            <h4>1. Diverse Teams</h4>
+            <ul>
+                <li>Teams that reflect diversity of affected populations more likely to identify potential harms</li>
+                <li>Include people with domain expertise (healthcare providers, teachers, social workers) alongside technical experts</li>
+                <li>Create processes for surfacing concerns about bias</li>
+            </ul>
+            
+            <h4>2. Ethics Review Processes</h4>
+            <ul>
+                <li><strong>Ethics boards:</strong> Review high-stakes AI applications before deployment</li>
+                <li><strong>Impact assessments:</strong> Systematic evaluation of potential harms</li>
+                <li><strong>Stakeholder input:</strong> Consult with affected communities</li>
+            </ul>
+            
+            <h4>3. Accountability Structures</h4>
+            <ul>
+                <li>Clear responsibility for algorithmic outcomes</li>
+                <li>Processes for individuals to challenge algorithmic decisions</li>
+                <li>Mechanisms to fix problems when identified</li>
+            </ul>
+            
+            <h3>Policy and Regulatory Solutions</h3>
+            
+            <h4>United States Approach</h4>
+            <ul>
+                <li><strong>Existing law:</strong> Civil Rights Act, Fair Housing Act, Equal Credit Opportunity Act apply to algorithms</li>
+                <li><strong>Regulatory action:</strong> FTC, CFPB, HUD have issued guidance on algorithmic discrimination</li>
+                <li><strong>New laws:</strong> Some states/cities passing algorithmic accountability laws
+                    <ul>
+                        <li>NYC: Audit requirement for AI hiring tools</li>
+                        <li>Illinois: Biometric privacy law affects facial recognition</li>
+                    </ul>
+                </li>
+                <li><strong>Limitation:</strong> Enforcement is limited, regulations lag technology</li>
+            </ul>
+            
+            <h4>European Union Approach</h4>
+            <ul>
+                <li><strong>GDPR (2018):</strong> Right to explanation for algorithmic decisions affecting individuals</li>
+                <li><strong>AI Act (proposed):</strong> Risk-based regulation of AI systems
+                    <ul>
+                        <li>Ban on certain high-risk applications</li>
+                        <li>Strict requirements for employment, credit, law enforcement AI</li>
+                        <li>Transparency requirements</li>
+                    </ul>
+                </li>
+                <li><strong>Approach:</strong> More proactive and comprehensive than U.S.</li>
+            </ul>
+            
+            <h4>China's Approach</h4>
+            <ul>
+                <li><strong>Algorithm Governance:</strong> Regulations on algorithm recommendation systems</li>
+                <li><strong>Focus:</strong> Content control, national security, social stability</li>
+                <li><strong>Less emphasis:</strong> Individual rights and anti-discrimination compared to EU/US</li>
+            </ul>
+            
+            <h3>Individual Actions</h3>
+            
+            <p>While systemic problems require systemic solutions, individuals can also contribute:</p>
+            
+            <ul>
+                <li><strong>As developers:</strong> Learn about fairness ML, question design choices, speak up about concerns</li>
+                <li><strong>As users:</strong> Be aware of when algorithms are making decisions about you, exercise rights to explanation/appeal</li>
+                <li><strong>As citizens:</strong> Support algorithmic accountability legislation, advocate for transparency</li>
+                <li><strong>As consumers:</strong> Consider algorithmic practices in choosing services/products</li>
+            </ul>
+            
+            <div class="takeaway">
+                <h4>🎯 No Perfect Solution</h4>
+                <p>There is no single technical fix for algorithmic bias. Addressing bias requires:</p>
+                <ul>
+                    <li>Technical tools (fairness-aware ML, auditing, transparency)</li>
+                    <li>Organizational practices (diverse teams, ethics review, accountability)</li>
+                    <li>Policy and regulation (laws, enforcement, standards)</li>
+                    <li>Ongoing vigilance (bias evolves as systems and society change)</li>
+                </ul>
+                <p><strong>Key insight:</strong> Fairness is not a technical problem to be solved once and for all, but an ongoing social and ethical challenge that requires sustained attention and effort.</p>
+            </div>
+        </section>
+        
+        <!-- CONCLUSION SECTION -->
+        <section id="conclusion">
+            <h2>Key Takeaways from Week 3</h2>
+            
+            <ol>
+                <li>
+                    <strong>Algorithms are not neutral.</strong> They encode the biases present in their training data, design choices, and deployment contexts.
+                </li>
+                
+                <li>
+                    <strong>Fairness has multiple conflicting definitions.</strong> It's mathematically impossible to satisfy all fairness criteria simultaneously, requiring difficult ethical choices.
+                </li>
+                
+                <li>
+                    <strong>Historical discrimination becomes algorithmic discrimination.</strong> Training on biased historical data perpetuates past injustices.
+                </li>
+                
+                <li>
+                    <strong>Scale amplifies harm.</strong> Algorithmic bias affects millions of people systematically, far exceeding the reach of individual human bias.
+                </li>
+                
+                <li>
+                    <strong>Technical accuracy ≠ ethical fairness.</strong> An algorithm can be technically accurate while being fundamentally unfair.
+                </li>
+                
+                <li>
+                    <strong>Good intentions aren't enough.</strong> Even well-intentioned developers can create biased systems without careful attention to fairness.
+                </li>
+                
+                <li>
+                    <strong>Transparency and accountability matter.</strong> Opacity makes bias hard to detect; accountability structures enable correction.
+                </li>
+                
+                <li>
+                    <strong>Some decisions may be unsuitable for automation.</strong> When historical data is severely biased and stakes are high, automation may perpetuate injustice.
+                </li>
+                
+                <li>
+                    <strong>Solutions require multiple approaches.</strong> Technical tools, organizational practices, and policy interventions all needed.
+                </li>
+                
+                <li>
+                    <strong>Fairness is an ongoing challenge.</strong> Not a problem to be solved once, but a value requiring sustained attention and effort.
+                </li>
+            </ol>
+            
+            <div class="key-concept">
+                <h4>Looking Ahead</h4>
+                <p>The issues raised in Week 3 connect to upcoming topics:</p>
+                <ul>
+                    <li><strong>Week 4 (AI and Work):</strong> How do algorithmic hiring systems affect employment opportunities and career access?</li>
+                    <li><strong>Week 5 (AI Safety):</strong> How do we build AI systems that behave as intended and don't cause harm?</li>
+                </ul>
+                <p>Fairness and bias remain central concerns throughout the course as we explore AI's role in society.</p>
+            </div>
+        </section>
+        
+    </div>
+    
+    <footer>
+        <p><strong>AI in Society: Ethical and Social Implications</strong></p>
+        <p>CT State Norwalk Community College | CRN 80484</p>
+        <p>Week 3 Review: Bias, Fairness, and Algorithmic Decision-Making</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">© 2025 | For educational use</p>
+    </footer>
+    
+    <a href="#" class="back-to-top" title="Back to top">↑</a>
+    
+</body>
+</html>
